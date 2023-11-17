@@ -3,14 +3,12 @@ const fs = require("fs");
 const path = require("path");
 
 class Event {
-  #id;
   #title;
   #description;
   #date;
   #maxSeats;
 
-  constructor(id, title, description, date, maxSeats) {
-    this.id = id;
+  constructor(title, description, date, maxSeats) {
     this.title = title;
     this.description = description;
     this.date = date;
@@ -18,9 +16,6 @@ class Event {
   }
 
   // GETTERS -------------------------------------------
-  get id() {
-    return this.#id;
-  }
   get title() {
     return this.#title;
   }
@@ -35,13 +30,6 @@ class Event {
   }
 
   // SETTERS -------------------------------------------
-  set id(value) {
-    if (!value) {
-      throw new Error("id is required");
-    }
-
-    this.#id = +value;
-  }
 
   set title(value) {
     if (!value || !value.trim()) {
@@ -70,7 +58,11 @@ class Event {
     this.#date = value;
   }
 
+  /**
+   * @param {number} value
+   */
   set maxSeats(value) {
+    console.log(value);
     if (!value) {
       throw new Error("maxSeats is required");
     }
@@ -87,7 +79,8 @@ class Event {
     return JSON.parse(data);
   }
 
-  static write() {
+  write() {
+    console.log(this.title);
     // leggo il file degli eventi che mi restituisce un array
     const events = Event.read();
 
@@ -96,23 +89,25 @@ class Event {
      * @type {number[]}
      */
     let idList = events.map((event) => event.id);
-    // Riordino gli ig
+    // Riordino gli id
     idList.sort((a, b) => b - a);
 
     // Inserisco il nuovo evento nell'array generando un nuovo id
-    events.push({
+    const event = {
       id: idList[0] + 1,
       title: this.title,
       description: this.description,
       date: this.date,
       maxSeats: this.maxSeats,
-    });
+    };
+    events.push(event);
 
     // Converto l'array in json e scrivo il file del db
     fs.writeFileSync(
       path.join(__dirname, "../db/events.json"),
       JSON.stringify(events, null, 2)
     );
+    return event;
   }
 }
 

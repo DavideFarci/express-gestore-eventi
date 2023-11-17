@@ -10,6 +10,8 @@ dotenv.config();
 const eventRouter = require("./routers/eventsRouter");
 
 const app = express();
+// Configuro express per leggere i dati in formato x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 
 // Rotte
 app.use("/events", eventRouter);

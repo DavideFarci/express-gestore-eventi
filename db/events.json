@@ -7,9 +7,24 @@
     "maxSeat": 100
   },
   {
-    "id": 2
+    "id": 2,
+    "title": "secondo evento",
+    "description": "evento meno bellissimo",
+    "date": "10/12/2025",
+    "maxSeats": 50
   },
   {
-    "id": 3
+    "id": 3,
+    "title": "terzo evento",
+    "description": "evento meno bellissimo",
+    "date": "10/12/2025",
+    "maxSeats": 50
+  },
+  {
+    "id": 4,
+    "title": "quarto evento",
+    "description": "evento meno bellissimo",
+    "date": "10/12/2025",
+    "maxSeats": 50
   }
 ]
