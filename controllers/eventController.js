@@ -11,13 +11,13 @@ function index(req, res) {
   const dateEvent = req.query.date;
 
   if (titleEvent) {
-    const eventsTitle = events.find(
+    const eventsTitle = events.filter(
       (event) => event.title.toLowerCase() === titleEvent.toLowerCase()
     );
 
     res.json({ events: eventsTitle });
   } else if (dateEvent) {
-    const eventsDate = events.find((event) => event.date === dateEvent);
+    const eventsDate = events.filter((event) => event.date === dateEvent);
 
     res.json({ events: eventsDate });
   }
