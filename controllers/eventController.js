@@ -58,23 +58,6 @@ function store(req, res) {
 // UPDATE ----------------------------------------------
 function update(req, res) {}
 
-function findOrFail(req, res) {
-  const events = Event.read();
-  // recupero l'id dalla richiesta
-  const eventId = req.params.id;
-
-  // recupero la pizza dal menu
-  const event = events.find((event) => event.id == eventId);
-
-  // Nel caso in cui non sia stata trovata la pizza ritorno un 404
-  if (!event) {
-    res.status(404).send(`Post ${eventId} non trovato`);
-    return; // interrompo l'esecuzione della funzione
-  }
-
-  return post;
-}
-
 module.exports = {
   index,
   store,
