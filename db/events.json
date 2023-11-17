@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "title": "Primio Evento",
+    "description": "Evento bellissimo",
+    "data": "20/11/2023",
+    "maxSeat": 100
+  },
+  {
+    "id": 2
+  },
+  {
+    "id": 3
+  }
+]
