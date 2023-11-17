@@ -12,6 +12,6 @@ router.get("/:id", eventController.show);
 router.post("/", eventController.store);
 
 // UPDATE
-router.put("/:event", eventController.update);
+router.put("/:id", eventController.update);
 
 module.exports = router;

@@ -109,6 +109,23 @@ class Event {
     );
     return event;
   }
+
+  static update(events) {
+    const filePath = path.join(__dirname, "../db/events.json");
+
+    try {
+      // Converte l'array di eventi in formato JSON
+      const eventsJson = JSON.stringify(events, null, 2);
+
+      // Scrive i dati nel file
+      fs.writeFileSync(filePath, eventsJson, "utf8");
+
+      return true; // Operazione di scrittura avvenuta con successo
+    } catch (error) {
+      console.error("Errore nella scrittura del file:", error);
+      return false; // Operazione di scrittura fallita
+    }
+  }
 }
 
 module.exports = Event;

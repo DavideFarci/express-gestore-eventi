@@ -29,7 +29,7 @@ function index(req, res) {
   }
 }
 
-// INDEX ----------------------------------------------
+// SHOW ----------------------------------------------
 function show(req, res) {
   const events = Event.read();
   const eventId = req.params.id;
@@ -56,7 +56,39 @@ function store(req, res) {
 }
 
 // UPDATE ----------------------------------------------
-function update(req, res) {}
+function update(req, res) {
+  const events = Event.read();
+  const eventId = req.params.id;
+  const { title, description, date, maxSeats } = req.body;
+
+  const eventToUpdate = events.find((event) => event.id == eventId);
+  if (!eventToUpdate) {
+    throw new Error("Evento non trovato");
+  }
+
+  if (title) {
+    eventToUpdate.title = title;
+  }
+  if (description) {
+    eventToUpdate.description = description;
+  }
+  if (date) {
+    eventToUpdate.date = date;
+  }
+  if (maxSeats) {
+    eventToUpdate.maxSeats = maxSeats;
+  }
+
+  const updatedEvent = Event.update(events);
+  if (updatedEvent) {
+    res.json({
+      messaggio: "Evento creato con successo",
+      newEvent: eventToUpdate,
+    });
+  } else {
+    throw new Error("Errore nell'aggiornamento dell'evento");
+  }
+}
 
 module.exports = {
   index,
