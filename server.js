@@ -8,6 +8,8 @@ dotenv.config();
 
 // Imports
 const eventRouter = require("./routers/eventsRouter");
+const routeNotFoundMiddleware = require("./middleware/routeNotFound");
+const errorsFormatterMiddlware = require("./middleware/errorsFormatter");
 
 const app = express();
 // Configuro express per leggere i dati in formato x-www-form-urlencoded
@@ -15,6 +17,12 @@ app.use(express.urlencoded({ extended: true }));
 
 // Rotte
 app.use("/events", eventRouter);
+
+// Formattare errori
+app.use(errorsFormatterMiddlware);
+
+// 404
+app.use(routeNotFoundMiddleware);
 
 app.listen(process.env.PORT || 3000, () => {
   console.log(

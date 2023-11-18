@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const Event = require("../models/event");
+const EventError = require("../exeptions/eventExeption");
 
 // INDEX ----------------------------------------------
 function index(req, res) {
@@ -25,7 +26,7 @@ function index(req, res) {
   if (events) {
     res.json({ message: "lista degli eventi:", events });
   } else {
-    throw new Error("Errore nella generazione delgi eventi");
+    throw new EventError("Si è verificato un problema, riprova!", 500);
   }
 }
 
@@ -37,7 +38,7 @@ function show(req, res) {
   if (event) {
     res.json({ event: event });
   } else {
-    throw new Error("Evento non trovato");
+    throw new EventError("Evento non trovato", 404);
   }
 }
 
@@ -51,7 +52,7 @@ function store(req, res) {
   if (obj) {
     res.json({ message: "Evento creato con successo!", event: obj });
   } else {
-    throw new Error("Errore nella creazione dell'evento");
+    throw new EventError("Errore nella creazione dell'evento", 400);
   }
 }
 
@@ -63,7 +64,7 @@ function update(req, res) {
 
   const eventToUpdate = events.find((event) => event.id == eventId);
   if (!eventToUpdate) {
-    throw new Error("Evento non trovato");
+    throw new EventError("Evento non trovato", 404);
   }
 
   if (title) {
@@ -86,7 +87,7 @@ function update(req, res) {
       newEvent: eventToUpdate,
     });
   } else {
-    throw new Error("Errore nell'aggiornamento dell'evento");
+    throw new EventError("Errore nell'aggiornamento dell'evento", 400);
   }
 }
 
