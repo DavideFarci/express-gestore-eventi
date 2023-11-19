@@ -7,20 +7,16 @@ const EventError = require("../exeptions/eventExeption");
 
 // INDEX ----------------------------------------------
 function index(req, res) {
-  const events = Event.read();
-  const titleEvent = req.query.title;
-  const dateEvent = req.query.date;
+  let events = Event.read();
+  const { title, date } = req.query;
 
-  if (titleEvent) {
-    const eventsTitle = events.filter(
-      (event) => event.title.toLowerCase() === titleEvent.toLowerCase()
+  if (title) {
+    events = events.filter((event) =>
+      event.title.toLowerCase().includes(title.toLowerCase())
     );
-
-    res.json({ events: eventsTitle });
-  } else if (dateEvent) {
-    const eventsDate = events.filter((event) => event.date === dateEvent);
-
-    res.json({ events: eventsDate });
+  }
+  if (date) {
+    events = events.filter((event) => event.date === date);
   }
 
   if (events) {
