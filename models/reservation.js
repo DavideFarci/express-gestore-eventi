@@ -1,8 +1,8 @@
 class Reservation {
-  firstName;
-  lastName;
-  email;
-  eventId;
+  #firstName;
+  #lastName;
+  #email;
+  #eventId;
 
   constructor(firstName, lastName, email, eventId) {
     this.firstName = firstName;
