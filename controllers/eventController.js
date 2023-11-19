@@ -7,19 +7,14 @@ const EventError = require("../exeptions/eventExeption");
 
 // INDEX ----------------------------------------------
 function index(req, res) {
-  let events = Event.read();
   const { title, date } = req.query;
+  let events = Event.read().filter(
+    (event) =>
+      (!title || event.title.toLowerCase().includes(title.toLowerCase())) &&
+      (!date || event.date === date)
+  );
 
-  if (title) {
-    events = events.filter((event) =>
-      event.title.toLowerCase().includes(title.toLowerCase())
-    );
-  }
-  if (date) {
-    events = events.filter((event) => event.date === date);
-  }
-
-  if (events) {
+  if (events.length) {
     res.json({ message: "lista degli eventi:", events });
   } else {
     throw new EventError("Si è verificato un problema, riprova!", 500);
