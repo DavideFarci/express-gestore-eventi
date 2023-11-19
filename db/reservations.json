@@ -1,0 +1,14 @@
+[
+  {
+    "firstName": "Davide",
+    "lastName": "Farci",
+    "email": "davide.farci@gmail.com",
+    "eventId": 1
+  },
+  {
+    "firstName": "Marci",
+    "lastName": "Porcu",
+    "email": "marco.porcu@gmail.com",
+    "eventId": 1
+  }
+]
