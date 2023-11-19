@@ -2,7 +2,6 @@ const { log } = require("console");
 const fs = require("fs");
 const path = require("path");
 
-const Event = require("../models/event");
 const Reservation = require("../models/reservation");
 const ReservationError = require("../exeptions/reservationExeption");
 
@@ -14,12 +13,12 @@ function index(req, res) {
 }
 
 function store(req, res) {
-  const eventId = req.params.id;
+  const eventId = +req.params.id;
   const { firstName, lastName, email } = req.body;
 
   const reservation = new Reservation(firstName, lastName, email, eventId);
   log(reservation);
-  const newReservation = reservation.addReservation(+eventId);
+  const newReservation = reservation.addReservation(eventId);
 
   if (newReservation) {
     res.json({
@@ -27,7 +26,7 @@ function store(req, res) {
       reservation: newReservation,
     });
   } else {
-    throw new ReservationError("Errore nella prenotazione");
+    throw new ReservationError("Errore nella prenotazione", 400);
   }
 }
 

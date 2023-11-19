@@ -9,13 +9,11 @@ class Reservation {
   #firstName;
   #lastName;
   #email;
-  #eventId;
 
-  constructor(firstName, lastName, email, eventId) {
+  constructor(firstName, lastName, email) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-    this.eventId = eventId;
   }
 
   // GETTERS -------------------------------------------
@@ -26,40 +24,31 @@ class Reservation {
     return this.#lastName;
   }
   get email() {
-    return this.email;
-  }
-  get eventId() {
-    return this.eventId;
+    return this.#email;
   }
 
   // SETTERS -------------------------------------------
   set firstName(value) {
     if (!value) {
-      throw new ReservationError("firstName is required", 400);
+      throw new Error("firstName is required");
     }
-    this.firstName = value.trim();
+    this.#firstName = value.trim();
   }
   set lastName(value) {
     if (!value) {
-      throw new ReservationError("lastName is required", 400);
+      throw new Error("lastName is required");
     }
-    this.lastName = value.trim();
+    this.#lastName = value.trim();
   }
   set email(value) {
     if (!value) {
-      throw new ReservationError("email is required", 400);
+      throw new Error("email is required");
     } else if (!value.includes("@")) {
-      throw new ReservationError("Please enter a valid email", 400);
-    } else if (!value.endsWith(".it") || !value.endsWith(".com")) {
-      throw new ReservationError(`Email must ends with ".com" or ".it"`, 400);
+      throw new Error("Please enter a valid email");
+    } else if (!value.endsWith(".it") && !value.endsWith(".com")) {
+      throw new Error(`Email must ends with ".com" or ".it"`);
     }
     this.#email = value.trim();
-  }
-  set eventId(value) {
-    if (!value) {
-      throw new ReservationError("EventID is required", 400);
-    }
-    this.#eventId = +value;
   }
 
   // FUNCTIONS -----------------------------------------
@@ -76,6 +65,7 @@ class Reservation {
   }
 
   addReservation(eventId) {
+    log(typeof eventId);
     const reservation = {
       firstName: this.firstName,
       lastName: this.lastName,

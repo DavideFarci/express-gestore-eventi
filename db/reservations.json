@@ -10,5 +10,17 @@
     "lastName": "Porcu",
     "email": "marco.porcu@gmail.com",
     "eventId": 1
+  },
+  {
+    "firstName": "Gino",
+    "lastName": "Pino",
+    "email": "gino.pino@gmail.it",
+    "eventId": 1
+  },
+  {
+    "firstName": "Gino",
+    "lastName": "Mandarino",
+    "email": "gino.mandarino@gmail.it",
+    "eventId": 1
   }
 ]
