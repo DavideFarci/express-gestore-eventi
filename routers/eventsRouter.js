@@ -21,4 +21,8 @@ router.put("/:id", eventController.update);
 // INDEX
 router.get("/:id/reservations", reservationController.index);
 
+router.post("/:id/reservations", reservationController.store);
+
+router.delete("/:id/reservations", reservationController.destroy);
+
 module.exports = router;
