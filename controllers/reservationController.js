@@ -4,7 +4,7 @@ const path = require("path");
 
 const Event = require("../models/event");
 const Reservation = require("../models/reservation");
-const EventError = require("../exeptions/eventExeption");
+const ReservationError = require("../exeptions/reservationExeption");
 
 function index(req, res) {
   const eventId = req.params.id;
