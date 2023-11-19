@@ -13,7 +13,23 @@ function index(req, res) {
   res.json({ "prenotazioni dell'evento:": reservations });
 }
 
-function store(req, res) {}
+function store(req, res) {
+  const eventId = req.params.id;
+  const { firstName, lastName, email } = req.body;
+
+  const reservation = new Reservation(firstName, lastName, email, eventId);
+  log(reservation);
+  const newReservation = reservation.addReservation(+eventId);
+
+  if (newReservation) {
+    res.json({
+      message: "Prenotazione effettuata con successo",
+      reservation: newReservation,
+    });
+  } else {
+    throw new ReservationError("Errore nella prenotazione");
+  }
+}
 
 function destroy(req, res) {}
 

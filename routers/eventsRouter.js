@@ -18,11 +18,14 @@ router.post("/", eventController.store);
 router.put("/:id", eventController.update);
 
 // RESERVATION ---------------------------------------
+
 // INDEX
 router.get("/:id/reservations", reservationController.index);
 
+// STORE
 router.post("/:id/reservations", reservationController.store);
 
+// DESTROY
 router.delete("/:id/reservations", reservationController.destroy);
 
 module.exports = router;

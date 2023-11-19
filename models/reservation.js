@@ -74,6 +74,22 @@ class Reservation {
 
     return eventReservations;
   }
+
+  addReservation(eventId) {
+    const reservation = {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      eventId: eventId,
+    };
+    reservations.push(reservation);
+
+    fs.writeFileSync(
+      path.join(__dirname, "../db/reservations.json"),
+      JSON.stringify(reservations, null, 2)
+    );
+    return reservation;
+  }
 }
 
 module.exports = Reservation;

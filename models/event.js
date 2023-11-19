@@ -80,7 +80,6 @@ class Event {
   }
 
   write() {
-    console.log(this.title);
     // leggo il file degli eventi che mi restituisce un array
     const events = Event.read();
 
