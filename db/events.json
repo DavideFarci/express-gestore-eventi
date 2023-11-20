@@ -4,7 +4,7 @@
     "title": "Evento modificato",
     "description": "Evento bellissimo",
     "data": "20/11/2023",
-    "maxSeat": 100
+    "maxSeats": 5
   },
   {
     "id": 2,

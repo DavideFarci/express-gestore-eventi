@@ -22,5 +22,11 @@
     "lastName": "Mandarino",
     "email": "gino.mandarino@gmail.it",
     "eventId": 1
+  },
+  {
+    "firstName": "Gino",
+    "lastName": "carino",
+    "email": "gino.carino@gmail.it",
+    "eventId": 1
   }
 ]

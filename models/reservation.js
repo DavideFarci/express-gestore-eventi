@@ -30,23 +30,23 @@ class Reservation {
   // SETTERS -------------------------------------------
   set firstName(value) {
     if (!value) {
-      throw new Error("firstName is required");
+      throw new ReservationError("firstName is required", 404);
     }
     this.#firstName = value.trim();
   }
   set lastName(value) {
     if (!value) {
-      throw new Error("lastName is required");
+      throw new ReservationError("lastName is required", 404);
     }
     this.#lastName = value.trim();
   }
   set email(value) {
     if (!value) {
-      throw new Error("email is required");
+      throw new ReservationError("email is required", 404);
     } else if (!value.includes("@")) {
-      throw new Error("Please enter a valid email");
+      throw new ReservationError("Please enter a valid email", 404);
     } else if (!value.endsWith(".it") && !value.endsWith(".com")) {
-      throw new Error(`Email must ends with ".com" or ".it"`);
+      throw new ReservationError(`Email must ends with ".com" or ".it"`, 404);
     }
     this.#email = value.trim();
   }
@@ -65,7 +65,6 @@ class Reservation {
   }
 
   addReservation(eventId) {
-    log(typeof eventId);
     const reservation = {
       firstName: this.firstName,
       lastName: this.lastName,
